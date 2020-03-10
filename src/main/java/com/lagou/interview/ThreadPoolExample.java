@@ -2,6 +2,9 @@ package com.lagou.interview;
 
 import java.util.concurrent.*;
 
+/**
+ * 线程池示例
+ */
 public class ThreadPoolExample {
     public static void main(String[] args) {
         // 线程池扩展
