@@ -21,8 +21,54 @@ public class ThreadPoolExample {
 
         // 线程池使用
         threadPoolUse();
+
+        // 线程池拒绝策略演示
+        rejected();
+
+        // 自定义拒绝策略
+        rejectedByCustom();
+
     }
 
+    /**
+     * 自定义拒绝策略
+     */
+    private static void rejectedByCustom() {
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 3,
+                10, TimeUnit.SECONDS, new LinkedBlockingQueue<>(2),
+                new RejectedExecutionHandler() {  // 添加自定义拒绝策略
+                    @Override
+                    public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
+                        // 业务处理方法
+                        System.out.println("执行自定义拒绝策略");
+                    }
+                });
+        for (int i = 0; i < 6; i++) {
+            executor.execute(() -> {
+                System.out.println(Thread.currentThread().getName());
+            });
+        }
+    }
+
+    /**
+     * Java 自带的拒绝策略演示
+     */
+    private static void rejected() {
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 3,
+                10, TimeUnit.SECONDS, new LinkedBlockingQueue<>(2),
+                new ThreadPoolExecutor.AbortPolicy()); // 添加 AbortPolicy 拒绝策略
+        for (int i = 0; i < 6; i++) {
+            executor.execute(() -> {
+                System.out.println(Thread.currentThread().getName());
+            });
+        }
+    }
+
+    /**
+     * 线程池使用方式对比
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
     private static void threadPoolUse() throws ExecutionException, InterruptedException {
         ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 10, 10L,
                 TimeUnit.SECONDS, new LinkedBlockingQueue(20));
@@ -63,7 +109,8 @@ public class ThreadPoolExample {
     static class MyThreadPoolExecutor extends ThreadPoolExecutor {
         private final ThreadLocal<Long> localTime = new ThreadLocal<>();
 
-        public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue) {
+        public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime,
+                                    TimeUnit unit, BlockingQueue<Runnable> workQueue) {
             super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
         }
 
@@ -88,7 +135,6 @@ public class ThreadPoolExample {
          */
         @Override
         protected void afterExecute(Runnable r, Throwable t) {
-            System.out.println(t);
             Long eTime = System.nanoTime(); // 结束时间 (单位：纳秒)
             Long totalTime = eTime - localTime.get(); // 执行总时间
             System.out.println(String.format("%s | after | time=%s | 耗时：%s 毫秒",
