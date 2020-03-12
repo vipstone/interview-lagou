@@ -6,10 +6,10 @@ import java.util.concurrent.*;
  * 线程池示例
  */
 public class ThreadPoolExample {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         // 线程池扩展
-        MyThreadPoolExecutor executor = new MyThreadPoolExecutor(2, 4, 10, TimeUnit.SECONDS,
-                new LinkedBlockingQueue());
+        MyThreadPoolExecutor executor = new MyThreadPoolExecutor(2, 4, 10,
+                TimeUnit.SECONDS, new LinkedBlockingQueue());
         for (int i = 0; i < 3; i++) {
             executor.execute(() -> {
                 Thread.currentThread().getName();
@@ -18,6 +18,30 @@ public class ThreadPoolExample {
 
         // 线程池溢出演示
         overflow();
+
+        // 线程池使用
+        threadPoolUse();
+    }
+
+    private static void threadPoolUse() throws ExecutionException, InterruptedException {
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 10, 10L,
+                TimeUnit.SECONDS, new LinkedBlockingQueue(20));
+        // execute 使用
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Hello, execute.");
+            }
+        });
+        // submit 使用
+        Future<String> future = executor.submit(new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                System.out.println("Hello, submit.");
+                return "Success";
+            }
+        });
+        System.out.println(future.get());
     }
 
     /**
