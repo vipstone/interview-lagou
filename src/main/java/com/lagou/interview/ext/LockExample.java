@@ -5,6 +5,23 @@ import java.util.concurrent.TimeUnit;
 public class LockExample {
     public static void main(String[] args) {
         deadLock(); // 死锁
+
+        reentrantA(); // 可重入锁
+    }
+
+    /**
+     * 可重入锁 A 方法
+     */
+    private synchronized static void reentrantA() {
+        System.out.println(Thread.currentThread().getName() + "：执行 reentrantA");
+        reentrantB();
+    }
+
+    /**
+     * 可重入锁 B 方法
+     */
+    private synchronized static void reentrantB() {
+        System.out.println(Thread.currentThread().getName() + "：执行 reentrantB");
     }
 
     /**
