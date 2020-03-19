@@ -14,12 +14,10 @@ public class CloneExample {
         // 打印名称
         System.out.println("p2:" + p2.getName());
 
-
+        // 分隔
         p2.setName("Lang");
         System.out.println(p1.getName());
         System.out.println("p2:" + p2.getName());
-
-//        Arrays.copyOf()
     }
 
     static class People implements Cloneable {
