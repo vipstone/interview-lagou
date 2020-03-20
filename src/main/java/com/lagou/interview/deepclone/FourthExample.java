@@ -1,39 +1,24 @@
-package com.lagou.interview;
+package com.lagou.interview.deepclone;
 
-import java.util.Arrays;
+import org.apache.commons.lang3.SerializationUtils;
+
+import java.io.Serializable;
 
 /**
- * 克隆相关示例
+ * 深克隆实现方式四：通过 apache.commons.lang 实现
  */
-public class CloneExample {
+public class FourthExample {
     public static void main(String[] args) throws CloneNotSupportedException {
-        ArraysCopy(); // Arrays.copyOf 浅克隆
-        cloneTest(); // 克隆
-    }
-
-    /**
-     * Arrays.copyOf 浅克隆
-     */
-    private static void ArraysCopy() {
-        int[] nums1 = {3, 5, 7, 9};
-        int[] nums2 = Arrays.copyOf(nums1, nums1.length);
-        // 修改克隆对象的第一个元素的值
-        nums2[0] = 5;
-        System.out.println("nums1:" + Arrays.toString(nums2));
-        System.out.println("nums2:" + Arrays.toString(nums2));
-    }
-
-    /**
-     * 克隆
-     */
-    private static void cloneTest() throws CloneNotSupportedException {
-        // 创建被赋值对象
+        // 创建对象
         Address address = new Address(110, "北京");
         People p1 = new People(1, "Java", address);
-        // 克隆 p1 对象
-        People p2 = p1.clone();
+
+        // 调用 apache.commons.lang 克隆对象
+        People p2 = (People) SerializationUtils.clone(p1);
+
         // 修改原型对象
         p1.getAddress().setCity("西安");
+
         // 输出 p1 和 p2 地址信息
         System.out.println("p1:" + p1.getAddress().getCity() +
                 " p2:" + p2.getAddress().getCity());
@@ -42,21 +27,10 @@ public class CloneExample {
     /**
      * 用户类
      */
-    static class People implements Cloneable {
+    static class People implements Serializable {
         private Integer id;
         private String name;
         private Address address;
-
-        /**
-         * 重写 clone 方法
-         * @throws CloneNotSupportedException
-         */
-        @Override
-        protected People clone() throws CloneNotSupportedException {
-            People people = (People) super.clone();
-            people.setAddress(this.address.clone());
-            return people;
-        }
 
         public People() {
         }
@@ -95,18 +69,9 @@ public class CloneExample {
     /**
      * 地址类
      */
-    static class Address implements Cloneable {
+    static class Address implements Serializable {
         private Integer id;
         private String city;
-
-        /**
-         * 重写 clone 方法
-         * @throws CloneNotSupportedException
-         */
-        @Override
-        protected Address clone() throws CloneNotSupportedException {
-            return (Address) super.clone();
-        }
 
         public Address() {
         }

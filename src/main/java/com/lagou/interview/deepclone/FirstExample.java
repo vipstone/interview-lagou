@@ -1,32 +1,10 @@
-package com.lagou.interview;
-
-import java.util.Arrays;
+package com.lagou.interview.deepclone;
 
 /**
- * 克隆相关示例
+ * 深克隆实现方式一：所以对象都实现 Cloneable
  */
-public class CloneExample {
+public class FirstExample {
     public static void main(String[] args) throws CloneNotSupportedException {
-        ArraysCopy(); // Arrays.copyOf 浅克隆
-        cloneTest(); // 克隆
-    }
-
-    /**
-     * Arrays.copyOf 浅克隆
-     */
-    private static void ArraysCopy() {
-        int[] nums1 = {3, 5, 7, 9};
-        int[] nums2 = Arrays.copyOf(nums1, nums1.length);
-        // 修改克隆对象的第一个元素的值
-        nums2[0] = 5;
-        System.out.println("nums1:" + Arrays.toString(nums2));
-        System.out.println("nums2:" + Arrays.toString(nums2));
-    }
-
-    /**
-     * 克隆
-     */
-    private static void cloneTest() throws CloneNotSupportedException {
         // 创建被赋值对象
         Address address = new Address(110, "北京");
         People p1 = new People(1, "Java", address);

@@ -1,62 +1,59 @@
-package com.lagou.interview;
+package com.lagou.interview.deepclone;
 
-import java.util.Arrays;
+import java.io.*;
 
 /**
- * 克隆相关示例
+ * 深克隆实现方式三：通过字节流实现
  */
-public class CloneExample {
+public class ThirdExample {
     public static void main(String[] args) throws CloneNotSupportedException {
-        ArraysCopy(); // Arrays.copyOf 浅克隆
-        cloneTest(); // 克隆
-    }
-
-    /**
-     * Arrays.copyOf 浅克隆
-     */
-    private static void ArraysCopy() {
-        int[] nums1 = {3, 5, 7, 9};
-        int[] nums2 = Arrays.copyOf(nums1, nums1.length);
-        // 修改克隆对象的第一个元素的值
-        nums2[0] = 5;
-        System.out.println("nums1:" + Arrays.toString(nums2));
-        System.out.println("nums2:" + Arrays.toString(nums2));
-    }
-
-    /**
-     * 克隆
-     */
-    private static void cloneTest() throws CloneNotSupportedException {
-        // 创建被赋值对象
+        // 创建对象
         Address address = new Address(110, "北京");
         People p1 = new People(1, "Java", address);
-        // 克隆 p1 对象
-        People p2 = p1.clone();
+
+        // 通过字节流实现
+        People p2 = (People) StreamClone.clone(p1);
+
         // 修改原型对象
         p1.getAddress().setCity("西安");
+
         // 输出 p1 和 p2 地址信息
         System.out.println("p1:" + p1.getAddress().getCity() +
                 " p2:" + p2.getAddress().getCity());
     }
 
     /**
+     * 字节流拷贝
+     */
+    static class StreamClone {
+        public static <T extends Serializable> T clone(People obj) {
+            T cloneObj = null;
+            try {
+                // 写入字节流
+                ByteArrayOutputStream bo = new ByteArrayOutputStream();
+                ObjectOutputStream oos = new ObjectOutputStream(bo);
+                oos.writeObject(obj);
+                oos.close();
+                // 分配内存,写入原始对象,生成新对象
+                ByteArrayInputStream bi = new ByteArrayInputStream(bo.toByteArray());//获取上面的输出字节流
+                ObjectInputStream oi = new ObjectInputStream(bi);
+                // 返回生成的新对象
+                cloneObj = (T) oi.readObject();
+                oi.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return cloneObj;
+        }
+    }
+
+    /**
      * 用户类
      */
-    static class People implements Cloneable {
+    static class People implements Serializable {
         private Integer id;
         private String name;
         private Address address;
-
-        /**
-         * 重写 clone 方法
-         * @throws CloneNotSupportedException
-         */
-        @Override
-        protected People clone() throws CloneNotSupportedException {
-            People people = (People) super.clone();
-            people.setAddress(this.address.clone());
-            return people;
-        }
 
         public People() {
         }
@@ -95,18 +92,9 @@ public class CloneExample {
     /**
      * 地址类
      */
-    static class Address implements Cloneable {
+    static class Address implements Serializable {
         private Integer id;
         private String city;
-
-        /**
-         * 重写 clone 方法
-         * @throws CloneNotSupportedException
-         */
-        @Override
-        protected Address clone() throws CloneNotSupportedException {
-            return (Address) super.clone();
-        }
 
         public Address() {
         }
