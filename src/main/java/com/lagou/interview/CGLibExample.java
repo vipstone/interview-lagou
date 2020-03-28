@@ -10,7 +10,6 @@ import java.lang.reflect.Method;
  * CGLib 动态代理示例
  */
 public class CGLibExample {
-
     static class Car {
         public void running() {
             System.out.println("The car is running.");
