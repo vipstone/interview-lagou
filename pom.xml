@@ -19,6 +19,15 @@
     </properties>
 
     <dependencies>
+
+        <!-- CGLib 类，动态代理相关 -->
+        <!-- https://mvnrepository.com/artifact/cglib/cglib -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
         <!-- 工具集 -->
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
