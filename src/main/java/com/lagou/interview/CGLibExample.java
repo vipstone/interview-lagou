@@ -6,6 +6,9 @@ import net.sf.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.Method;
 
+/**
+ * CGLib 动态代理示例
+ */
 public class CGLibExample {
 
     static class Car {
