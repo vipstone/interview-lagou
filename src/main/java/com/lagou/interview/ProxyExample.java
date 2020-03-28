@@ -9,28 +9,21 @@ import java.lang.reflect.Proxy;
  * JDK Proxy 相关示例
  */
 public class ProxyExample {
-    public static void main(String[] args) {
-        // 执行 JDK Proxy
-        JDKProxy jdkProxy = new JDKProxy();
-        Car carInstance = (Car) jdkProxy.getInstance(new Taxi());
-        carInstance.run();
-    }
-
     static interface Car {
-        void run();
+        void running();
     }
 
     static class Bus implements Car {
         @Override
-        public void run() {
-            System.out.println("Bus Run.");
+        public void running() {
+            System.out.println("The bus is running.");
         }
     }
 
     static class Taxi implements Car {
         @Override
-        public void run() {
-            System.out.println("Taxi Run.");
+        public void running() {
+            System.out.println("The taxi is running.");
         }
     }
 
@@ -66,4 +59,10 @@ public class ProxyExample {
         }
     }
 
+    public static void main(String[] args) {
+        // 执行 JDK Proxy
+        JDKProxy jdkProxy = new JDKProxy();
+        Car carInstance = (Car) jdkProxy.getInstance(new Taxi());
+        carInstance.running();
+    }
 }
