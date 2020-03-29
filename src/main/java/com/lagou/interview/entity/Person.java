@@ -1,10 +1,8 @@
 package com.lagou.interview.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class Person {
     private Integer id;
     private String name;
