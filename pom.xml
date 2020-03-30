@@ -20,6 +20,22 @@
 
     <dependencies>
 
+        <!-- 工具类 guava -->
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>28.2-jre</version>
+        </dependency>
+
+        <!-- 缓存 EhCache -->
+        <!-- https://mvnrepository.com/artifact/org.ehcache/ehcache -->
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+
         <!-- CGLib 类，动态代理相关 -->
         <!-- https://mvnrepository.com/artifact/cglib/cglib -->
         <dependency>
