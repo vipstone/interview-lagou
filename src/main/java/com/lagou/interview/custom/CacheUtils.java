@@ -2,6 +2,8 @@ package com.lagou.interview.custom;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * 缓存操作工具类
  */
@@ -50,6 +52,15 @@ public class CacheUtils {
         if (!CacheGlobal.concurrentMap.containsKey(key)) return null;
         MyCache cache = CacheGlobal.concurrentMap.get(key);
         if (cache == null) return null;
+        // 惰性删除，判断缓存是否过期
+        long timoutTime = TimeUnit.NANOSECONDS.toSeconds(
+                System.nanoTime() - cache.getWriteTime());
+        if (cache.getExpireTime() <= timoutTime) {
+            // 缓存过期
+            return null;
+        }
+        // 清除过期缓存
+        CacheGlobal.concurrentMap.remove(key);
         cache.setHitCount(cache.getHitCount() + 1);
         cache.setLastTime(System.currentTimeMillis());
         return cache.getValue();
