@@ -8,19 +8,20 @@ import java.util.Arrays;
 public class CloneExample {
     public static void main(String[] args) throws CloneNotSupportedException {
         ArraysCopy(); // Arrays.copyOf 浅克隆
-        cloneTest(); // 克隆
+//        cloneTest(); // 克隆
     }
 
     /**
      * Arrays.copyOf 浅克隆
      */
     private static void ArraysCopy() {
-        int[] nums1 = {3, 5, 7, 9};
-        int[] nums2 = Arrays.copyOf(nums1, nums1.length);
-        // 修改克隆对象的第一个元素的值
-        nums2[0] = 5;
-        System.out.println("nums1:" + Arrays.toString(nums2));
-        System.out.println("nums2:" + Arrays.toString(nums2));
+        People[] o1 = {new People(1, "Java",
+                new Address(110, "北京"))};
+        People[] o2 = Arrays.copyOf(o1, o1.length);
+        // 修改原型对象的第一个元素的值
+        o1[0].setName("Jdk");
+        System.out.println("o1:" + o1[0].getName());
+        System.out.println("o2:" + o2[0].getName());
     }
 
     /**
