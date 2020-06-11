@@ -5,13 +5,65 @@ import java.util.Arrays;
  */
 public class AlgorithmExample {
     public static void main(String[] args) {
+        int[] insertNums = {4, 33, 10, 13, 49, 20, 8};
+        // 调用选择排序
+        selectSort(insertNums);
+        System.out.println("选择排序后结果：" + Arrays.toString(insertNums));
+    }
 
+    /**
+     * 选择排序
+     */
+    private static void selectSort(int[] nums) {
+        int index;
+        int temp;
+        for (int i = 0; i < nums.length - 1; i++) {
+            index = i;
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[j] < nums[index]) {
+                    index = j;
+                }
+            }
+            if (index != i) {
+                temp = nums[i];
+                nums[i] = nums[index];
+                nums[index] = temp;
+            }
+            System.out.print("第" + i + "次排序：");
+            System.out.println(Arrays.toString(nums));
+        }
+    }
+
+
+    /**
+     * 插入排序
+     */
+    private static void insertSort(int[] nums) {
+        int i, j, k;
+        for (i = 1; i < nums.length; i++) {
+            k = nums[i];
+            j = i - 1;
+            // 对 i 之前的数据，给当前元素找到合适的位置
+            while (j >= 0 && k < nums[j]) {
+                nums[j + 1] = nums[j];
+                // j-- 继续往前寻找
+                j--;
+            }
+            nums[j + 1] = k;
+        }
+    }
+
+
+    /**
+     * 冒泡排序测试
+     */
+    private static void bubbleSortTest() {
         // 待排序数组
         int[] nums = {33, 45, 11, 22, 12, 39, 27};
         bubbleSort(nums);
         // 打印排序完数组
         System.out.println(Arrays.toString(nums));
-
+        bubbleSortTest();
     }
 
     /**
