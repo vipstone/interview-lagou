@@ -1,54 +1,52 @@
-拉勾课程《Java面试真题与源码34讲》示例
-
 ## 目录
 
 ### 第一部分：Java 基础
-01.String 的特点是什么？它有哪些重要的方法？
+[01.String 的特点是什么？它有哪些重要的方法？](https://t.lagou.com/3R38R+RuRG9E8)
 
-02.HashMap 底层实现原理是什么？JDK8 做了哪些优化？
+[02.HashMap 底层实现原理是什么？JDK8 做了哪些优化？](https://t.lagou.com/3R38R+RuRG9E8)
 
-03.线程的状态有哪些？它是如何工作的？
+[03.线程的状态有哪些？它是如何工作的？](https://t.lagou.com/3R38R+RuRG9E8)
 
-04.详解 ThreadPoolExecutor 的参数含义及源码执行流程？
+[04.详解 ThreadPoolExecutor 的参数含义及源码执行流程？](https://t.lagou.com/3R38R+RuRG9E8)
 
-05.synchronized 和 ReentrantLock 的实现原理是什么？它们有什么区别？
+[05.synchronized 和 ReentrantLock 的实现原理是什么？它们有什么区别？](https://t.lagou.com/3R38R+RuRG9E8)
 
-06.谈谈你对锁的理解？如何手动模拟一个死锁？
+[06.谈谈你对锁的理解？如何手动模拟一个死锁？](https://t.lagou.com/3R38R+RuRG9E8)
 
-07.深克隆和浅克隆有什么区别？它的实现方式有哪些？
+[07.深克隆和浅克隆有什么区别？它的实现方式有哪些？](https://t.lagou.com/3R38R+RuRG9E8)
 
-08.动态代理是如何实现的？JDK Proxy 和 CGLib 有什么区别？
+[08.动态代理是如何实现的？JDK Proxy 和 CGLib 有什么区别？](https://t.lagou.com/3R38R+RuRG9E8)
 
-09.如何实现本地缓存和分布式缓存？
+[09.如何实现本地缓存和分布式缓存？](https://t.lagou.com/3R38R+RuRG9E8)
 
-10.如何手写一个消息队列和延迟消息队列？
+[10.如何手写一个消息队列和延迟消息队列？](https://t.lagou.com/3R38R+RuRG9E8)
 
 ### 第二部分：热门框架
-11.底层源码分析 Spring 的核心功能和执行流程？（上）
+[11.底层源码分析 Spring 的核心功能和执行流程？（上）](https://t.lagou.com/3R38R+RuRG9E8)
 
-12.底层源码分析 Spring 的核心功能和执行流程？（下）
+[12.底层源码分析 Spring 的核心功能和执行流程？（下）](https://t.lagou.com/3R38R+RuRG9E8)
 
-13.MyBatis 使用了哪些设计模式？在源码中是如何体现的？
+[13.MyBatis 使用了哪些设计模式？在源码中是如何体现的？](https://t.lagou.com/3R38R+RuRG9E8)
 
-14.SpringBoot 有哪些优点？它和 Spring 有什么区别？
+[14.SpringBoot 有哪些优点？它和 Spring 有什么区别？](https://t.lagou.com/3R38R+RuRG9E8)
 
-15.MQ 有什么作用？你都用过哪些 MQ 中间件？
+[15.MQ 有什么作用？你都用过哪些 MQ 中间件？](https://t.lagou.com/3R38R+RuRG9E8)
 
 ### 第三部分：数据库相关
 
-16.MySQL 的运行机制是什么？它有哪些引擎？
+[16.MySQL 的运行机制是什么？它有哪些引擎？](https://t.lagou.com/3R38R+RuRG9E8)
 
-17.MySQL 的优化方案有哪些？
+[17.MySQL 的优化方案有哪些？](https://t.lagou.com/3R38R+RuRG9E8)
 
-187.关系型数据和文档型数据库有什么区别？
+[18.关系型数据和文档型数据库有什么区别？](https://t.lagou.com/3R38R+RuRG9E8)
 
-19.Redis 的过期策略和内存淘汰机制有什么区别？
+[19.Redis 的过期策略和内存淘汰机制有什么区别？](https://t.lagou.com/3R38R+RuRG9E8)
 
-20.Redis 怎样实现的分布式锁？
+[20.Redis 怎样实现的分布式锁？](https://t.lagou.com/3R38R+RuRG9E8)
 
-21.Redis 中如何实现的消息队列？实现的方式有几种？
+[21.Redis 中如何实现的消息队列？实现的方式有几种？](https://t.lagou.com/3R38R+RuRG9E8)
 
-22.Redis 是如何实现高可用的？
+[22.Redis 是如何实现高可用的？](https://t.lagou.com/3R38R+RuRG9E8)
 
 ### 第四部分：Java 进阶
 
